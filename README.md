@@ -20,8 +20,6 @@ server
 END OF THE FOLDER STRUCTURE
 
 PACKAGE.JSON DEPENENCIES WHICH ALL THE DEPENDENCIES ARE NOT REQUIRED CHECK IN SERVER.JS FILE TO MATCH
-
-   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "ejs": "^2.7.1",
@@ -33,7 +31,7 @@ PACKAGE.JSON DEPENENCIES WHICH ALL THE DEPENDENCIES ARE NOT REQUIRED CHECK IN SE
     "sequelize": "^5.21.2",
     "sqlite3": "^4.1.0",
     "stream": "0.0.2"
-  }
+  
    
    
   
