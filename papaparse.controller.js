@@ -10,6 +10,7 @@ const fs = require("fs");
 router.post("/", fileUpload);
 router.post("/papa", papaParseReadFile);
 router.get("/list", listFiles);
+router.get("/papaunparse", papaUnParse);
 
 module.exports = router;
 
@@ -52,6 +53,7 @@ function fileUpload(req, res) {
   });
 }
 
+// use papaparse parse the buffer or file path files
 function papaParseReadFile(req, res, err) {
   const upload = multerSetUp();
   upload(req, res, err => {
@@ -154,8 +156,43 @@ function papaParseReadFile(req, res, err) {
   });
 }
 
+// list all the files
 function listFiles(req, res) {
   res.send({
     msg: "list of all the files!"
   });
+}
+
+// [papa unparse]
+function papaUnParse(req, res) {
+  var csv = Papa.unparse([
+    {
+      Name: "Dipranjan",
+      Address: "bhubaneswar"
+    },
+    {
+      Name: "deepak",
+      Address: "bangalore"
+    },
+    {
+      Name: "Rohit",
+      Address: "bangkok"
+    },
+    {
+      Name: "foo",
+      Address: "bar"
+    }
+  ]);
+
+  //console.log(csv);
+
+  var wstream = fs.createWriteStream("./public/uploads/myOutput.csv");
+  wstream.on("finish", function() {
+    console.log("file has been written");
+    res.send({
+      msg: "file has been written"
+    });
+  });
+  wstream.write(csv);
+  wstream.end();
 }
